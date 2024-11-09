@@ -6,6 +6,11 @@ import IntroductionScreen from "../screens/Intro/IntroductionScreen";
 import RegisterScreen from "../screens/Register/RegisterScreen";
 import LoginScreen from "../screens/Login/LoginScreen";
 import { RootStackParamList } from "./type";
+import HomeScreen from "../screens/Home/HomeScreen";
+import * as SplashScreen from "expo-splash-screen";
+
+SplashScreen.preventAutoHideAsync();
+
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigation = () => {
   return (
@@ -16,7 +21,22 @@ const AppNavigation = () => {
           component={IntroductionScreen}
         ></Stack.Screen>
         <Stack.Screen name="Register" component={RegisterScreen}></Stack.Screen>
-        <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          listeners={{
+            transitionEnd: () => SplashScreen.hideAsync(),
+          }}
+          options={{ headerShown: false }}
+        ></Stack.Screen>
+        <Stack.Screen
+          listeners={{
+            transitionEnd: () => SplashScreen.hideAsync(),
+          }}
+          name="Login"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        ></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

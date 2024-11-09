@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../navigations/type";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { header } from "../../utils/constants";
 type NavigationProps = NativeStackScreenProps<
   RootStackParamList,
   "introduction"
@@ -11,7 +13,16 @@ type NavigationProps = NativeStackScreenProps<
 const IntroductionScreen = () => {
   const navigation = useNavigation<NavigationProps>();
   useEffect(() => {
-    navigation.navigate("Login");
+    const token = AsyncStorage.getItem("token").then((t) => {
+      if (t) {
+        header.token = t;
+        navigation.navigate("Home");
+      } else {
+        navigation.navigate("Login");
+      }
+    });
+
+    console.log("token", token);
   }, []);
   return (
     <View>
