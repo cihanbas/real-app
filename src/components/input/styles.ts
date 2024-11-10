@@ -19,4 +19,9 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     paddingRight: 10,
   },
+  errorText: {
+    color: "red",
+    paddingTop: 6,
+    fontSize: 12,
+  },
 });

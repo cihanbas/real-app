@@ -5,6 +5,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../navigations/type";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { header } from "../../utils/constants";
+import Button from "../../components/Button/Button";
 type NavigationProps = NativeStackScreenProps<
   RootStackParamList,
   "introduction"
@@ -21,12 +22,12 @@ const IntroductionScreen = () => {
         navigation.navigate("Login");
       }
     });
-
     console.log("token", token);
   }, []);
   return (
     <View>
       <Text>IntroductionScreen</Text>
+      <Button text="Go to Home" onPress={() => navigation.navigate("Users")} />
     </View>
   );
 };

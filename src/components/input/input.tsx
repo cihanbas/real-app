@@ -6,6 +6,7 @@ interface Props {
   placeholder?: string;
   value: string;
   onChangeText: (text: string) => void;
+  errorText?: string;
 }
 const Input = (props: Props) => {
   return (
@@ -20,6 +21,9 @@ const Input = (props: Props) => {
         onChangeText={(text) => props.onChangeText(text)}
         placeholder={props.placeholder || props.labelText}
       ></TextInput>
+      {props.errorText && (
+        <Text style={styles.errorText}>{props.errorText}</Text>
+      )}
     </View>
   );
 };

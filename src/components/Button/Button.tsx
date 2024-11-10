@@ -3,10 +3,15 @@ import React, { FC } from "react";
 interface ButtonProps {
   onPress: () => void;
   text: string;
+  disabled?: boolean;
 }
-const Button: FC<ButtonProps> = ({ onPress, text }) => {
+const Button: FC<ButtonProps> = ({ onPress, text, disabled }) => {
   return (
-    <Pressable style={styles.btn} onPress={onPress}>
+    <Pressable
+      style={[styles.btn, { backgroundColor: disabled ? "gray" : "#000B58" }]}
+      disabled={disabled}
+      onPress={onPress}
+    >
       <Text style={styles.btn_text}>{text}</Text>
     </Pressable>
   );
@@ -16,7 +21,6 @@ export default Button;
 
 const styles = StyleSheet.create({
   btn: {
-    backgroundColor: "#000B58",
     margin: 10,
     padding: 10,
     borderRadius: 10,

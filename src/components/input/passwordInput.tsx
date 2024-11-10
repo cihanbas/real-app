@@ -6,6 +6,7 @@ interface Props {
   labelText: string;
   placeholder?: string;
   value: string;
+  errorText?: string;
   onChangeText: (text: string) => void;
 }
 const PasswordInput = (props: Props) => {
@@ -33,6 +34,9 @@ const PasswordInput = (props: Props) => {
           />
         </Pressable>
       </View>
+      {props.errorText && (
+        <Text style={styles.errorText}>{props.errorText}</Text>
+      )}
     </View>
   );
 };

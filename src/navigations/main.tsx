@@ -8,6 +8,7 @@ import LoginScreen from "../screens/Login/LoginScreen";
 import { RootStackParamList } from "./type";
 import HomeScreen from "../screens/Home/HomeScreen";
 import * as SplashScreen from "expo-splash-screen";
+import UsersScreen from "../screens/Users/UsersScreen";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -24,6 +25,14 @@ const AppNavigation = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
+          listeners={{
+            transitionEnd: () => SplashScreen.hideAsync(),
+          }}
+          options={{ headerShown: false }}
+        ></Stack.Screen>
+        <Stack.Screen
+          name="Users"
+          component={UsersScreen}
           listeners={{
             transitionEnd: () => SplashScreen.hideAsync(),
           }}
